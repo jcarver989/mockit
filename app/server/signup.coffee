@@ -26,6 +26,7 @@ class MongoDocument
   @connection: new Db("test", new Server("127.0.0.1", 27017, {}))
   @buffer: []
   @ready: false
+  @create_decorators: []
 
   @connection.open (error) =>
     @ready = true
@@ -48,13 +49,19 @@ class MongoDocument
         callback(error, results)
 
   @create: (item, callback) ->
-    @get_collection (error, collection) ->
+    @get_collection (error, collection) =>
       return callback(error) if error?
+      decorator(item) for decorator in @create_decorators
 
       collection.insert item, (error, updated_collection) ->
         callback(null, updated_collection[0])
 
 
+class MongoTimestamps
+  @create_decorators: []
+  @create_decorators.push (item) ->
+    item.created_at = new Date()
+  
 include = (mixin) ->
   for key, val of mixin
     this[key] = val if mixin.hasOwnProperty(key)
@@ -63,6 +70,7 @@ include = (mixin) ->
 class Test
   @collection = "test_insert"
   include.apply(this, [MongoDocument])
+  include.apply(this, [MongoTimestamps])
   
 
 Test.create { email: "foooooo" }, (error, tests) ->
