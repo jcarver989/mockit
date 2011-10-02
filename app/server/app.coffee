@@ -2,6 +2,7 @@ require './environments.coffee'
 app     = require './boot.coffee'
 base62  = require './base_62.coffee'
 
+require './signup.coffee'
 
 app.helpers({
 })
