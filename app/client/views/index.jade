@@ -1,0 +1,46 @@
+!!! 5
+html
+  head
+    title Mock.it
+
+    link(href='http://fonts.googleapis.com/css?family=Lobster', rel='stylesheet', type='text/css')
+    link(rel="stylesheet", href="/stylesheets/global.css", type="text/css")
+    script(src="/javascripts/jquery.min.js", type="text/javascript")
+    script(src="/javascripts/jquery_extensions.js", type="text/javascript")
+    script(src="/javascripts/mustache.js", type="text/javascript")
+    script(src="/javascripts/application.js", type="text/javascript")
+  body
+    #wrapper
+      #doors
+        #left-door
+        #right-door
+
+      #form
+        h1#title 
+          | Mock.it
+
+        p#subtitle
+          | Easily create &amp; share mockups of web, android or ios apps. 
+          | Get early access by entering your email below
+
+        hr
+
+        form#signup(method="post", action="/signup")
+          .button-container
+            button.green.button#signup-button
+              | go
+
+            input#email(value="Your Email...", type="text", name="email") 
+
+        .row#post-signup(style="display:none;")
+          .two.columns
+            a#referral-link.share-link(href="#")
+              | #{"http://mock.it/aWsxI8ga"}
+
+          #twitter-share.half.column
+          #linkedin-share.half.column
+          #facebook-share.one.column
+
+      #supports
+
+    
