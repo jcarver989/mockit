@@ -55,12 +55,22 @@ show_form = (form, support) ->
         support.animate({"margin-top": "40px"}, 200)
   , 100)
 
-animate_page_transition = (signup, post_signup) ->
+animate_page_transition = (title, signup, post_signup) ->
   signup.fadeOut(400, ->
     post_signup.fadeIn(200)
-    $("#title").text("Thanks for signing up")
+    $("#title").text(title)
     $("#subtitle").text("We'll notify you soon. Want in faster? Invite your friends with the link below, if they signup, you move faster in line")
   )
+
+render_social_links = (link) ->
+  render = Mustache.to_html
+  data = { url: link }
+
+  $("#referral-link").text(link)
+  $("#twitter-share").html(render(ShareTemplates.twitter, data))
+  $("#linkedin-share").html(render(ShareTemplates.linkedin, data))
+  $("#facebook-share").html(render(ShareTemplates.facebook, data))
+
 
 setup_signup = (signup, post_signup, signup_button) ->
   signup_button.click((e) ->
@@ -72,17 +82,15 @@ setup_signup = (signup, post_signup, signup_button) ->
       console.log(response)
 
       if response.status == "success"
-        link = response.referral_link
-        render = Mustache.to_html
-        data = { url: link }
-        $("#referral-link").text(link)
+        render_social_links(response.referral_link)
+        animate_page_transition("Thanks for signing up", signup, post_signup)
 
-        $("#twitter-share").html(render(ShareTemplates.twitter, data))
-        $("#linkedin-share").html(render(ShareTemplates.linkedin, data))
-        $("#facebook-share").html(render(ShareTemplates.facebook, { url : link }))
-        animate_page_transition(signup, post_signup)
+      else if response.status == "registered"
+        render_social_links(response.referral_link)
+        animate_page_transition("You already signed up", signup, post_signup)
+
       else
-        alert("invalid email")
+        alert(response.msg)
   )
 
 $(document).ready(->
