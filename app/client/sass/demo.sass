@@ -1,0 +1,57 @@
+
+@import ../../vendor/pretty-pieces.sass/lib/pretty-pieces.sass
+
+
+body
+  background: #222
+
+
+.button
+  width: 100%
+  height: 100%
+  display: block
+  margin: 0 auto
+  padding: 0
+  text-align: center
+  cursor: move
+
+  &.large, .medium, .small, .micro
+    padding: 0
+
+.bounding-box
+  padding: 5px
+  border: 3px dashed rgba(255,255,255,0.3) 
+  cursor: move
+  +border-radius(5px)
+
+  &.ui-state-disabled
+    border: 3px dashed transparent 
+    opacity: 1.0
+
+
+.ui-resizable-handle
+  background: rgba(255,255,255,0.3)
+
+
+.inset-button-group
+  margin-top: 20px
+  &.blue
+    +inset-button-group(5px, $blue, 20px)
+  &.green
+    +inset-button-group(5px, $green, 20px)
+  &.red
+    +inset-button-group(5px, $red, 20px)
+  &.purple
+    +inset-button-group(5px, $purple, 20px)
+  &.gray
+    +inset-button-group(5px, $light-gray, 20px)
+    a
+      :color #333
+      :text-shadow none
+  &.dark-gray
+    +inset-button-group(5px, $dark-gray, 20px)
+
+  &.small
+    a
+      font-size: 14px
+      letter-spacing: 0px

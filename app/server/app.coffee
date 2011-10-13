@@ -16,6 +16,10 @@ app.get '/', (req, res) ->
   }
 
 
+app.get '/demo', (req, res) ->
+  res.render 'demo', {
+    title: 'Demo'
+  }
 
 # TODO: Move to own controller class
 class SignupResponses

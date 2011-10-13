@@ -12,6 +12,7 @@ class Signup
   include.apply(this, [MongoTimestamps])
 
   constructor: (data_hash) ->
+    # attach fields here
     @email = data_hash.email
     @referral_link = "http://mock.it/#{base62.random_encode()}"
 
