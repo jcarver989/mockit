@@ -8,9 +8,33 @@ html
     script(src="/javascripts/jquery.min.js", type="text/javascript")
     script(src="/javascripts/jquery-ui.min.js", type="text/javascript")
 
+    script(src="/javascripts/widgets.js", type="text/javascript")
     script(src="/javascripts/demo.js", type="text/javascript")
 
 
   body
-    h1 Hi
+    .top-menu
+      ul
+        li
+          a.create-widget.large.green.button(href="#", data-widget="Button") 
+            | Button
+
+        li
+          a.create-widget(href="#", data-widget="GradientBox")
+            .gradient-box.green.small
+              h3 100
+              small of Something
+        li
+          .inset-button-group.green.create-widget(data-widget="Menu")
+              a.active(href="#") One
+              a(href="#") Two
+              a(href="#") Three
+              a(href="#") Four
+
+        li
+          .notification.success.create-widget(data-widget="Notification")
+            a.close-link(href="#") Close
+            h3 Notification
+            p Some message
+    .canvas
 

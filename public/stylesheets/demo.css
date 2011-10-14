@@ -1407,7 +1407,9 @@ button.button {
     background-image: -moz-repeating-linear-gradient(left top -30deg, rgba(255, 255, 255, 0.17), rgba(255, 255, 255, 0.17) 15px, rgba(255, 255, 255, 0) 15px, rgba(255, 255, 255, 0) 30px), -moz-linear-gradient(#aa63db 0%, #933ad1 100%);
     background-image: repeating-linear-gradient(45deg, transparent, transparent 15px, rgba(255, 255, 255, 0.17) 15px, rgba(255, 255, 255, 0.17) 30px); }
 
-body {
+body, html {
+  padding: 0;
+  margin: 0;
   background: #222222; }
 
 .button {
@@ -1423,20 +1425,35 @@ body {
 
 .bounding-box {
   padding: 5px;
-  border: 3px dashed rgba(255, 255, 255, 0.3);
+  border: 3px dashed rgba(0, 0, 0, 0.3);
   cursor: move;
+  position: absolute;
   -moz-border-radius: 5px 5px 5px 5px;
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px; }
+  .bounding-box a.close-box {
+    background: url(../images/close.png) top left no-repeat;
+    width: 34px;
+    height: 34px;
+    text-indent: 9000em;
+    color: transparent;
+    position: absolute;
+    top: -18px;
+    right: -16px;
+    display: block; }
   .bounding-box.ui-state-disabled {
     border: 3px dashed transparent;
     opacity: 1; }
+    .bounding-box.ui-state-disabled a.close-box {
+      display: none; }
 
 .ui-resizable-handle {
-  background: rgba(255, 255, 255, 0.3); }
+  background: rgba(0, 0, 0, 0.3); }
 
 .inset-button-group {
-  margin-top: 20px; }
+  margin-top: 20px;
+  width: 350px;
+  height: 60px; }
   .inset-button-group.blue:after {
     content: ".";
     visibility: hidden;
@@ -1689,3 +1706,39 @@ body {
   .inset-button-group.small a {
     font-size: 14px;
     letter-spacing: 0px; }
+
+.button.large {
+  width: 120px;
+  height: 30px; }
+
+.canvas {
+  background: white;
+  margin: 20px auto 20px;
+  width: 80%;
+  padding: 20px;
+  position: relative;
+  height: 800px;
+  overflow: scroll; }
+
+.top-menu {
+  background: #111111;
+  height: 100px;
+  width: 100%;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.3);
+  margin-bottom: 20px; }
+  .top-menu li {
+    float: left;
+    list-style: none;
+    margin-right: 15px; }
+
+.gradient-box.small {
+  height: 70px;
+  padding: 5px;
+  margin: 0; }
+  .gradient-box.small h3 {
+    font-size: 36px; }
+  .gradient-box.small small {
+    font-size: 16px; }
+
+.create-widget {
+  cursor: pointer; }
